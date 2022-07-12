@@ -67,9 +67,9 @@ if app == 'Explore Data':
     st.sidebar.subheader('Visualization Settings')
     y_axis = st.sidebar.selectbox('Select y-axis', ['age', 'ap_hi', 
                                                     'alco'])
-    x_axis = st.sidebar.selectbox('Select x-axis', ['platelets', 'creatinine_phosphokinase', 
-                                                    'serum_creatinine', 'ap_lo'])
-    label = st.sidebar.selectbox('Select label', ['DEATH_EVENT', 'active', 'gluc', 
+    x_axis = st.sidebar.selectbox('Select x-axis', ['ap_lo'])
+    
+    label = st.sidebar.selectbox('Select label', ['cardio', 'active', 'gluc', 
                                                     'gluc', 'sex', 
                                                     'smoking'])
     st.subheader('**Visualization**')
@@ -94,8 +94,8 @@ elif app == 'Predict Mortality':
     st.sidebar.subheader('User Input Features')
 
     df = pd.read_csv('cardio_train.csv')
-    X = df.drop('DEATH_EVENT', axis=1)
-    y = df['DEATH_EVENT']
+    X = df.drop('cardio', axis=1)
+    y = df['cardio']
     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.2, random_state = 0)
 
     def user_input_features():
