@@ -10,8 +10,8 @@ from sklearn.model_selection import train_test_split
 
 st.set_page_config(page_title='Heart Failure EDA')
 
-st.title('Heart Failure Prediction')
-st.subheader('This app uses the ***Random Forest Classifier***')
+st.title('Douglas Crespo')
+st.subheader('Heart Failure Prediction using ***Random Forest Classifier***')
 st.write('---')
 
 st.sidebar.header('Directory')
