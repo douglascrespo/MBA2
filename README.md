@@ -1,13 +1,8 @@
 # Heart Failure Prediction
-A Machine learning web app made with **Streamlit**
-- https://share.streamlit.io/randell-janus/heart-failure-prediction/main/app.py  
-- Deployed via [Streamlit Sharing](https://streamlit.io/sharing)
+
 
 ## About
-Predicts mortality caused by Heart Failure with the use of a Random Forest Classifier model
-  
-### Dataset Source  
-The dataset is from Kaggle. The authors are Davide Chicco and Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020).  
+Predicts mortality caused by Heart Failure with the use of a Random Forest Classifier model 
 
 ### Predictor Values
 * age - Age of patient
@@ -30,9 +25,3 @@ The dataset is from Kaggle. The authors are Davide Chicco and Giuseppe Jurman: M
 - Provides dataframe exploration
 - Configurable visualization settings
 - Interactive widgets for customizing predictor values
-
-## Views
-- Home page![](https://github.com/Randell-janus/heart-failure-prediction/blob/main/public/home.JPG)
-- Data exploration![](https://github.com/Randell-janus/heart-failure-prediction/blob/main/public/data%20exploration.JPG)
-- Data visualization![](https://github.com/Randell-janus/heart-failure-prediction/blob/main/public/visualization.JPG)
-- Main page![](https://github.com/Randell-janus/heart-failure-prediction/blob/main/public/main.JPG)
