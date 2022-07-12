@@ -69,7 +69,7 @@ if app == 'Explore Data':
                                                     'time'])
     x_axis = st.sidebar.selectbox('Select x-axis', ['platelets', 'creatinine_phosphokinase', 
                                                     'serum_creatinine', 'serum_sodium'])
-    label = st.sidebar.selectbox('Select label', ['DEATH_EVENT', 'anaemia', 'diabetes', 
+    label = st.sidebar.selectbox('Select label', ['DEATH_EVENT', 'active', 'diabetes', 
                                                     'high_blood_pressure', 'sex', 
                                                     'smoking'])
     st.subheader('**Visualization**')
@@ -140,9 +140,9 @@ elif app == 'Predict Mortality':
         diabetes = st.sidebar.checkbox('Diabetic')
         if diabetes:
             diabetes = 1
-        anaemia = st.sidebar.checkbox('Anemic')
-        if anaemia:
-            anaemia = 1
+        active = st.sidebar.checkbox('Active')
+        if active:
+            active = 1
             
         age = st.sidebar.slider('Age', 40, 95, 60)
         ejection_fraction = st.sidebar.slider('Ejection Fraction', 14, 80, 38)
@@ -153,7 +153,7 @@ elif app == 'Predict Mortality':
         serum_creatinine = st.sidebar.number_input('Serum Creatinine', 0.5, 9.4, 1.3)
         time = st.sidebar.number_input('Follow-up period (Days)', 4, 285, 130)
         data = {'age': age,
-                'anaemia': anaemia,
+                'active': active,
                 'creatinine_phosphokinase': creatinine_phosphokinase,
                 'diabetes': diabetes,
                 'ejection_fraction': ejection_fraction,
