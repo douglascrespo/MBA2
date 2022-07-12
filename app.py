@@ -190,6 +190,3 @@ elif app == 'Predict Mortality':
 
 else:
     st.header('**References/Citation**')
-    st.subheader('**Dataset**')
-    st.write('The dataset is from user **Larxel** of Kaggle')
-    st.write('Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020).')
