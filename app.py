@@ -17,7 +17,7 @@ st.write('---')
 st.sidebar.header('Directory')
 app = st.sidebar.selectbox('', ['Explore Data', 'Predict Mortality', 'Citation'])
 
-df = pd.read_csv('heart_failure_clinical_records_dataset.csv')
+df = pd.read_csv('heart_failure_clinical_records_dataset_v1.csv')
 
 if app == 'Explore Data':
     about_expander = st.beta_expander('About',expanded=True)
