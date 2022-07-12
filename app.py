@@ -145,13 +145,12 @@ elif app == 'Predict Mortality':
             active = 1
             
         age = st.sidebar.slider('Age', 25, 65, 45)
-        ejection_fraction = st.sidebar.slider('Ejection Fraction', 14, 80, 38)
-        serum_sodium = st.sidebar.slider('Serum Sodium', 113, 148, 136)
-        
-        creatinine_phosphokinase = st.sidebar.number_input('Creatinine Phosphokinase', 23, 7861, 581)
-        platelets = st.sidebar.number_input('Platelet Count', 25100.00, 850000.00, 263358.00, help='25100 < input < 850000')
-        serum_creatinine = st.sidebar.number_input('Serum Creatinine', 0.5, 9.4, 1.3)
-        time = st.sidebar.number_input('Follow-up period (Days)', 4, 285, 130)
+        ejection_fraction = st.sidebar.slider('Ejection Fraction', 14, 80, 47)
+        serum_sodium = st.sidebar.slider('Serum Sodium', 113, 148, 130)
+        creatinine_phosphokinase = st.sidebar.slider('Creatinine Phosphokinase', 23, 7861, 581)
+        platelets = st.sidebar.slider('Platelet Count', 25100, 850000, 437550)
+        serum_creatinine = st.sidebar.slider('Serum Creatinine', 0.5, 9.4, 4.95)
+        time = st.sidebar.slider('Follow-up period (Days)', 4, 285, 130)
         data = {'age': age,
                 'active': active,
                 'creatinine_phosphokinase': creatinine_phosphokinase,
