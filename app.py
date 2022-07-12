@@ -127,7 +127,7 @@ elif app == 'Predict Mortality':
     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.2, random_state = 0)
 
     def user_input_features():
-        display = ("Female (0)", "Male (1)")
+        display = ("Female", "Male")
         options = list(range(len(display)))
         sex = st.sidebar.radio("Sex", options, format_func=lambda x: display[x])
 
@@ -144,7 +144,7 @@ elif app == 'Predict Mortality':
         if active:
             active = 1
             
-        age = st.sidebar.slider('Age', 40, 95, 60)
+        age = st.sidebar.slider('Age', 25, 65, 45)
         ejection_fraction = st.sidebar.slider('Ejection Fraction', 14, 80, 38)
         serum_sodium = st.sidebar.slider('Serum Sodium', 113, 148, 136)
         
