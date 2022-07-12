@@ -10,12 +10,12 @@ from sklearn.model_selection import train_test_split
 
 st.set_page_config(page_title='Heart Failure EDA')
 
-st.title('Douglas Crespo - MBA')
-st.subheader('Heart Failure Prediction***')
+st.title('Heart Failure Prediction')
+st.subheader('This app uses the ***Random Forest Classifier***')
 st.write('---')
 
 st.sidebar.header('Directory')
-app = st.sidebar.selectbox('', ['Explorar Dados', 'Predição de Mortalidade', 'Citação'])
+app = st.sidebar.selectbox('', ['Explore Data', 'Predict Mortality', 'Citation'])
 
 df = pd.read_csv('heart_failure_clinical_records_dataset_v1.csv')
 
@@ -25,14 +25,14 @@ if app == 'Explore Data':
         img = Image.open('heartattack.jpg')
         st.image(img)
         st.write("""
-                	As doenças cardiovasculares (DCVs) são a causa número 1 de morte em todo o mundo,
-		    tirando cerca de 17,9 milhões de vidas a cada ano, o que representa 31% de todas as mortes 
-		    em todo o mundo. A insuficiência cardíaca é um evento comum causado por DVCs e este conjunto 
-		    de dados contém 12 recursos que podem ser usados para prever mortalidade por insuficiência 
-		    cardíaca.
+                Cardiovascular diseases (CVDs) are the **number 1 cause of death** globally, 
+                taking an estimated 17.9 million lives each year, which accounts for 31 
+                percent of all deaths worlwide. Heart failure is a common event caused 
+                by CVDs and this dataset contains 12 features that can be used to predict 
+                mortality by heart failure.
                 """)
 
-    st.subheader('**Explore o conjunto de dados**')
+    st.subheader('**Explore the dataset**')
     col1, col2 = st.beta_columns(2)
     selectbox_options = col1.selectbox('Transform', ['Head','Tail', 
                                                         'Describe','Shape', 
@@ -50,14 +50,14 @@ if app == 'Explore Data':
         st.write('Shape: ', df.shape)
     elif selectbox_options == 'DTypes':
         st.write(df.dtypes)
-    
+
     st.write('---')
     numeric_df = df.select_dtypes(['float64', 'int64'])
     numeric_cols = numeric_df.columns
 
-    st.subheader('**Filtrar colunas com Multiseleção**')
-    st.write("""Esse recurso é para comparar determinadas colunas no conjunto de dados.
-				Você pode adicionar apenas as colunas que deseja comparar e explorar.
+    st.subheader('**Filter columns with Multiselect**')
+    st.write("""This feature is for comparing certain columns in the dataset.
+                You may add only the columns you wish to compare and explore.
                 """)
     feature_selection = st.multiselect('', options=numeric_cols)
     df_features = df[feature_selection]
@@ -72,16 +72,16 @@ if app == 'Explore Data':
     label = st.sidebar.selectbox('Select label', ['DEATH_EVENT', 'anaemia', 'diabetes', 
                                                     'high_blood_pressure', 'sex', 
                                                     'smoking'])
-    st.subheader('**Visualização**')
-    st.write("""Personalize o eixo x e y através das configurações de visualização da barra lateral.
-				Você também pode selecionar recursos binários como rótulos que estarão na forma	de 
-				uma cor.""")
+    st.subheader('**Visualization**')
+    st.write("""Customize the x and y axis through the sidebar visualization settings. 
+                You can also select binary features as labels which will be in the form 
+                of a color.""")
     select_graph = st.sidebar.radio('Select Graph', ('point', 'bar', 'area', 'line'))
 
     col1, col2, col3 = st.beta_columns([.5,.5,1])
     graph_hgt = col1.slider('Height', 200, 600, 400, step=10)
     graph_wgt = col2.slider('Width',400, 800, 600, step=10)
-        
+
     df = df.loc[(df.creatinine_phosphokinase < 800) & (df.platelets < 500000) & 
                 (df.serum_creatinine < 2.2) & (df.age >= 40)]
 
@@ -89,7 +89,7 @@ if app == 'Explore Data':
                                                             alt.Y(y_axis, scale=alt.Scale(zero=False)),color=label).properties(
         height=graph_hgt,width=graph_wgt)
     st.write(chart)
-    
+
     if y_axis == 'age' and x_axis == 'platelets' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had platelet count ranging from 150,000 - 300,000 and aged 58 - 75')
     elif y_axis == 'age' and x_axis == 'creatinine_phosphokinase' and label == 'DEATH_EVENT':
@@ -98,7 +98,7 @@ if app == 'Explore Data':
         st.write('Majority of deceased patients had serum creatinine count ranging from 1.2 - 1.9 and aged 50 - 75')
     elif y_axis == 'age' and x_axis == 'serum_sodium' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had serum sodium count ranging from 134 - 140 and aged 55 - 80')
-    
+
     elif y_axis == 'ejection_fraction' and x_axis == 'platelets' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had platelet count ranging from 150,000 - 250,000 and ejection fraction count of 10 - 30') 
     elif y_axis == 'ejection_fraction' and x_axis == 'creatinine_phosphokinase' and label == 'DEATH_EVENT':
@@ -107,7 +107,7 @@ if app == 'Explore Data':
         st.write('Majority of deceased patients had serum creatinine count ranging from 1.8 - 2 and ejection fraction count of 20 - 40') 
     elif y_axis == 'ejection_fraction' and x_axis == 'serum_sodium' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had serum_sodium count ranging from 134 - 138 and ejection fraction count of 20 - 40') 
-        
+
     elif y_axis == 'time' and x_axis == 'platelets' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had platelet count ranging from 150,000 - 350,000 and a follow up time of less than 50 days') 
     elif y_axis == 'time' and x_axis == 'creatinine_phosphokinase' and label == 'DEATH_EVENT':
@@ -116,9 +116,9 @@ if app == 'Explore Data':
         st.write('Majority of deceased patients had serum creatinine count ranging from 0.9 - 1.5 and follow up time of less than 50 days') 
     elif y_axis == 'time' and x_axis == 'serum_sodium' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had serum_sodium count ranging from 134 - 140 and follow up time of less than 100 days') 
-        
 
-elif app == 'Predição de Mortalidade':
+
+elif app == 'Predict Mortality':
     st.sidebar.subheader('User Input Features')
 
     df = pd.read_csv('heart_failure_clinical_records_dataset.csv')
@@ -127,7 +127,7 @@ elif app == 'Predição de Mortalidade':
     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.2, random_state = 0)
 
     def user_input_features():
-        display = ("Mulher (0)", "Homem (1)")
+        display = ("Female (0)", "Male (1)")
         options = list(range(len(display)))
         sex = st.sidebar.radio("Sex", options, format_func=lambda x: display[x])
 
@@ -143,11 +143,11 @@ elif app == 'Predição de Mortalidade':
         anaemia = st.sidebar.checkbox('Anemic')
         if anaemia:
             anaemia = 1
-            
+
         age = st.sidebar.slider('Age', 40, 95, 60)
         ejection_fraction = st.sidebar.slider('Ejection Fraction', 14, 80, 38)
         serum_sodium = st.sidebar.slider('Serum Sodium', 113, 148, 136)
-        
+
         creatinine_phosphokinase = st.sidebar.number_input('Creatinine Phosphokinase', 23, 7861, 581)
         platelets = st.sidebar.number_input('Platelet Count', 25100.00, 850000.00, 263358.00, help='25100 < input < 850000')
         serum_creatinine = st.sidebar.number_input('Serum Creatinine', 0.5, 9.4, 1.3)
@@ -184,9 +184,9 @@ elif app == 'Predição de Mortalidade':
     pred_button = st.button('Predict')
     if pred_button:
         if user_result[0] == 0:
-            st.success('Paciente sobreviveu durante o período de acompanhamento')
+            st.success('Patient survived during the follow-up period (0)')
         else:
-            st.error('Paciente falecido durante o período de acompanhamento')
+            st.error('Patient deceased during the follow-up period (1)')
 
 else:
     st.header('**References/Citation**')
