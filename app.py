@@ -50,7 +50,7 @@ if app == 'Explore Data':
         st.write('Shape: ', df.shape)
     elif selectbox_options == 'DTypes':
         st.write(df.dtypes)
-    
+
     st.write('---')
     numeric_df = df.select_dtypes(['float64', 'int64'])
     numeric_cols = numeric_df.columns
@@ -65,10 +65,11 @@ if app == 'Explore Data':
     st.write('---')
 
     st.sidebar.subheader('Visualization Settings')
-    y_axis = st.sidebar.selectbox('Select y-axis', ['age', 'ejection_fraction'])
+    y_axis = st.sidebar.selectbox('Select y-axis', ['age', 'ejection_fraction', 
+                                                    'time'])
     x_axis = st.sidebar.selectbox('Select x-axis', ['platelets', 'creatinine_phosphokinase', 
                                                     'serum_creatinine', 'serum_sodium'])
-    label = st.sidebar.selectbox('Select label', ['Kill', 'active', 'diabetes', 
+    label = st.sidebar.selectbox('Select label', ['DEATH_EVENT', 'active', 'diabetes', 
                                                     'high_blood_pressure', 'sex', 
                                                     'smoking'])
     st.subheader('**Visualization**')
@@ -80,7 +81,7 @@ if app == 'Explore Data':
     col1, col2, col3 = st.beta_columns([.5,.5,1])
     graph_hgt = col1.slider('Height', 200, 600, 400, step=10)
     graph_wgt = col2.slider('Width',400, 800, 600, step=10)
-        
+
     df = df.loc[(df.creatinine_phosphokinase < 800) & (df.platelets < 500000) & 
                 (df.serum_creatinine < 2.2) & (df.age >= 40)]
 
@@ -88,31 +89,41 @@ if app == 'Explore Data':
                                                             alt.Y(y_axis, scale=alt.Scale(zero=False)),color=label).properties(
         height=graph_hgt,width=graph_wgt)
     st.write(chart)
-    
-    if y_axis == 'age' and x_axis == 'platelets' and label == 'Kill':
+
+    if y_axis == 'age' and x_axis == 'platelets' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had platelet count ranging from 150,000 - 300,000 and aged 58 - 75')
-    elif y_axis == 'age' and x_axis == 'creatinine_phosphokinase' and label == 'Kill':
+    elif y_axis == 'age' and x_axis == 'creatinine_phosphokinase' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had creatinine phosphokinase count ranging from 100 - 250 and aged 55 - 70')
-    elif y_axis == 'age' and x_axis == 'serum_creatinine' and label == 'Kill':
+    elif y_axis == 'age' and x_axis == 'serum_creatinine' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had serum creatinine count ranging from 1.2 - 1.9 and aged 50 - 75')
-    elif y_axis == 'age' and x_axis == 'serum_sodium' and label == 'Kill':
+    elif y_axis == 'age' and x_axis == 'serum_sodium' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had serum sodium count ranging from 134 - 140 and aged 55 - 80')
-    
-    elif y_axis == 'ejection_fraction' and x_axis == 'platelets' and label == 'Kill':
+
+    elif y_axis == 'ejection_fraction' and x_axis == 'platelets' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had platelet count ranging from 150,000 - 250,000 and ejection fraction count of 10 - 30') 
-    elif y_axis == 'ejection_fraction' and x_axis == 'creatinine_phosphokinase' and label == 'Kill':
+    elif y_axis == 'ejection_fraction' and x_axis == 'creatinine_phosphokinase' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had creatinine phosphokinase count ranging from 50 - 175 and ejection fraction count of 20 - 30') 
-    elif y_axis == 'ejection_fraction' and x_axis == 'serum_creatinine' and label == 'Kill':
+    elif y_axis == 'ejection_fraction' and x_axis == 'serum_creatinine' and label == 'DEATH_EVENT':
         st.write('Majority of deceased patients had serum creatinine count ranging from 1.8 - 2 and ejection fraction count of 20 - 40') 
-    elif y_axis == 'ejection_fraction' and x_axis == 'serum_sodium' and label == 'Kill':
-        st.write('Majority of deceased patients had serum_sodium count ranging from 134 - 138 and ejection fraction count of 20 - 40')             
+    elif y_axis == 'ejection_fraction' and x_axis == 'serum_sodium' and label == 'DEATH_EVENT':
+        st.write('Majority of deceased patients had serum_sodium count ranging from 134 - 138 and ejection fraction count of 20 - 40') 
+
+    elif y_axis == 'time' and x_axis == 'platelets' and label == 'DEATH_EVENT':
+        st.write('Majority of deceased patients had platelet count ranging from 150,000 - 350,000 and a follow up time of less than 50 days') 
+    elif y_axis == 'time' and x_axis == 'creatinine_phosphokinase' and label == 'DEATH_EVENT':
+        st.write('Majority of deceased patients had creatinine phosphokinase count ranging from 50 - 250, 550 - 600, and a follow up time of less than 50 days') 
+    elif y_axis == 'time' and x_axis == 'serum_creatinine' and label == 'DEATH_EVENT':
+        st.write('Majority of deceased patients had serum creatinine count ranging from 0.9 - 1.5 and follow up time of less than 50 days') 
+    elif y_axis == 'time' and x_axis == 'serum_sodium' and label == 'DEATH_EVENT':
+        st.write('Majority of deceased patients had serum_sodium count ranging from 134 - 140 and follow up time of less than 100 days') 
+
 
 elif app == 'Predict Mortality':
     st.sidebar.subheader('User Input Features')
 
     df = pd.read_csv('heart_failure_clinical_records_dataset.csv')
-    X = df.drop('Kill', axis=1)
-    y = df['Kill']
+    X = df.drop('DEATH_EVENT', axis=1)
+    y = df['DEATH_EVENT']
     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.2, random_state = 0)
 
     def user_input_features():
@@ -132,11 +143,11 @@ elif app == 'Predict Mortality':
         active = st.sidebar.checkbox('Active')
         if active:
             active = 1
-            
+
         age = st.sidebar.slider('Age', 25, 65, 45)
         ejection_fraction = st.sidebar.slider('Ejection Fraction', 14, 80, 47)
         serum_sodium = st.sidebar.slider('Serum Sodium', 113, 148, 130)
-
+        time = st.sidebar.slider('Follow-up period (Days)', 4, 285, 130)
         creatinine_phosphokinase = st.sidebar.number_input('Creatinine Phosphokinase', 23, 7861, 581)
         platelets = st.sidebar.number_input('Platelet Count', 25100, 850000, 437550)
         serum_creatinine = st.sidebar.number_input('Serum Creatinine', 0.5, 9.4, 4.95)
@@ -152,6 +163,7 @@ elif app == 'Predict Mortality':
                 'serum_sodium': serum_sodium,
                 'sex': sex,
                 'smoking': smoking,
+                'time': time
                 }
         features = pd.DataFrame(data, index=[0])
         return features
