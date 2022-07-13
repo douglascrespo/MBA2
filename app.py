@@ -184,9 +184,9 @@ elif app == 'Predict Mortality':
     pred_button = st.button('Predict')
     if pred_button:
         if user_result[0] == 0:
-            st.success('Patient survived during the follow-up period (0)')
+            st.success('Patient with NO risk of Heart Failure')
         else:
-            st.error('Patient deceased during the follow-up period (1)')
+            st.error('Patient with risk of Heart Failure')
 
 else:
     st.header('**References/Citation**')
