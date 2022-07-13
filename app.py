@@ -8,10 +8,10 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
-st.set_page_config(page_title='Heart Failure EDA')
+st.set_page_config(page_title='Heart Failure')
 
-st.title('Heart Failure Prediction')
-st.subheader('This app uses the ***Random Forest Classifier***')
+st.title('Douglas Crespo')
+st.subheader('Heart Failure Prediction using ***Random Forest Classifier***')
 st.write('---')
 
 st.sidebar.header('Directory')
@@ -190,6 +190,3 @@ elif app == 'Predict Mortality':
 
 else:
     st.header('**References/Citation**')
-    st.subheader('**Dataset**')
-    st.write('The dataset is from user **Larxel** of Kaggle')
-    st.write('Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020).')
