@@ -1,8 +1,9 @@
 # Heart Failure Prediction
 
+https://douglascrespo-tcc-app-7xatro.streamlitapp.com/
 
 ## About
-Predicts mortality caused by Heart Failure with the use of a Random Forest Classifier model 
+Predicts risk of Heart Failure with the use of a Random Forest Classifier model 
 
 ### Predictor Values
 * age - Age of patient
@@ -16,10 +17,9 @@ Predicts mortality caused by Heart Failure with the use of a Random Forest Class
 * serum_sodium - Level of serum sodium in the blood (mEq/L)
 * sex - male (1) or female (0) (binary)
 * smoking - If the patient smokes or not (boolean)
-* time - Follow-up period (days)  
 
 ### Predicted Value
-* DEATH_EVENT - If the patient deceased during the follow-up period (boolean)
+* DEATH_EVENT - If the has patient risk of Heart Failure (boolean)
 
 ## Web App Features  
 - Provides dataframe exploration
